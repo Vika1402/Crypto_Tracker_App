@@ -6,7 +6,7 @@ import CoinTable from "../Componenets/CoinTable/CoinTable";
 function Home() {
   return (
     <>
-      <Navbar />
+     
       <Banner />
       <CoinTable />
     </>

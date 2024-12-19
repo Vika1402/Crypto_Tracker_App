@@ -5,17 +5,11 @@ import Navbar from "./Componenets/Navbar/Navbar";
 import Banner from "./Componenets/Banner/Banner";
 import Home from "./pages/Home";
 import Routing from "./Componenets/Routing/Routing";
-//import { CurrencyContext } from "./Componenets/Context/CurrencyContext";
 
 function App() {
-  //const [currency, setCurrency] = useState("usd");
-
   return (
     <>
-      {/* <CurrencyContext.Provider value={{ currency, setCurrency }}>
-       
-      </CurrencyContext.Provider> */}
-
+     
       <Routing />
     </>
   );
