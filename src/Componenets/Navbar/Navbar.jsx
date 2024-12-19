@@ -34,10 +34,10 @@ function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li onClick={() => setCurrency("inr")}>
-              <a>inr</a>
+              <a>INR</a>
             </li>
             <li onClick={() => setCurrency("usd")}>
-              <a>usd</a>
+              <a>USD</a>
             </li>
           </ul>
         </div>

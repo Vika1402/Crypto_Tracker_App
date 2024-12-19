@@ -54,7 +54,7 @@ function CoinDetailsPage() {
         </div>
       </div>
 
-      <div className="w-full p-6 md:w-2/3">coin info</div>
+      <div className="w-full p-6 md:w-2/3">coin information</div>
     </div>
   );
 }
