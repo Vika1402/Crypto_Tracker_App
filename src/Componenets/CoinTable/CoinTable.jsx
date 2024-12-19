@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Navbar";
+import Navbar from "../Navbar/Navbar";
 import Banner from "../Banner/Banner";
 import { fetchCoinData } from "../../Services/fetchCoinData";
 import { useQuery } from "@tanstack/react-query";
+//import { CurrencyContext } from "../Context/CurrencyContext";
+import LoadingSpinner from "../Loading/Loading";
+import store from "../state/Store";
 
 function CoinTable() {
+  const { currency } = store();
   const [page, setPage] = useState(1); // Default page set to 1
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["coins", page], // Wrap the query key in an object
-    queryFn: () => fetchCoinData("usd", page), // Function to fetch data
+    queryKey: ["coins", page, currency], // Wrap the query key in an object
+    queryFn: () => fetchCoinData(currency, page), // Function to fetch data
     // retry: 2, // Number of retries on failure
     // retryDelay: 1000, // Delay between retries in milliseconds
     cacheTime: 1000 * 60 * 2,
-    staleTime:1000*60*2 // Cache duration in milliseconds
+    staleTime: 1000 * 60 * 2, // Cache duration in milliseconds
   });
 
   // console.log("fetched data : ", data);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (isError) {
@@ -27,7 +31,7 @@ function CoinTable() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5 my-5 w-[80vw] mx-auto">
+    <div className="flex flex-col items-center justify-center gap-5 my-5 w-[80vw] mx-auto ">
       <div className="flex items-center justify-center w-full px-2 py-2 font-semibold text-black bg-yellow-400">
         <div className="basis-[35%]">coin</div>
         <div className="basis-[25%]">Current Price</div>
@@ -61,22 +65,25 @@ function CoinTable() {
             );
           })}
 
-        <div className={`flex items-center  ${page>1 && `justify-between` } justify-center w-full`}>
+        <div
+          className={`flex items-center  ${
+            page > 1 && `justify-between`
+          } justify-center w-full`}
+        >
+          {page > 1 && (
+            <button
+              className="text-2xl text-white btn btn-primary btn-wide"
+              onClick={() => {
+                if (page > 1) {
+                  setPage(page - 1);
+                  return;
+                }
+              }}
+            >
+              Prev
+            </button>
+          )}
 
-        {page>1 && <button
-            className="text-2xl text-white btn btn-primary btn-wide"
-            onClick={() => {
-              if (page > 1) {
-                setPage(page - 1);
-                return;
-              }
-            }}
-          >
-            Prev
-          </button>
-        
-        }
-          
           <button
             className="text-2xl text-white btn btn-secondary btn-wide"
             onClick={() => setPage(page + 1)}

@@ -1,39 +1,52 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import CoinTable from "./Componenets/CoinTable/CoinTable";
-import Navbar from "./Componenets/Navbar";
+import Navbar from "./Componenets/Navbar/Navbar";
 import Banner from "./Componenets/Banner/Banner";
+import Home from "./pages/Home";
+//import { CurrencyContext } from "./Componenets/Context/CurrencyContext";
 
 function App() {
-  // const [data, setData] = useState([]);
-  // const fetchApi = async () => {
-  //   try {
-  //     const fetchapi = await fetch(
-  //       "https://api.escuelajs.co/api/v1/categories"
-  //     );
-  //     const result = await fetchapi.json();
-  //     setData(result);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchApi();
-  // }, []);
+  //const [currency, setCurrency] = useState("usd");
 
-  // function xmlRes() {
-  //   const xhr = XMLHttpRequest;
-  //   xhr.open("get", "https://jsonplaceholder.typicode.com/todos/2");
-  //   xhr.send();
-  // }
-
-  // xmlRes();
   return (
     <>
-      <Navbar />
-      <Banner />
-      <CoinTable />
-      {/* <div className="text-[30px]">helo</div>
+      {/* <CurrencyContext.Provider value={{ currency, setCurrency }}>
+       
+      </CurrencyContext.Provider> */}
+
+      <Home />
+    </>
+  );
+}
+
+export default App;
+
+// const [data, setData] = useState([]);
+// const fetchApi = async () => {
+//   try {
+//     const fetchapi = await fetch(
+//       "https://api.escuelajs.co/api/v1/categories"
+//     );
+//     const result = await fetchapi.json();
+//     setData(result);
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//   }
+// };
+// useEffect(() => {
+//   fetchApi();
+// }, []);
+
+// function xmlRes() {
+//   const xhr = XMLHttpRequest;
+//   xhr.open("get", "https://jsonplaceholder.typicode.com/todos/2");
+//   xhr.send();
+// }
+
+// xmlRes();
+{
+  /* <div className="text-[30px]">helo</div>
       <button className="">ok</button>
       <div className="flex flex-wrap ">
         {data.map((item, index) => {
@@ -57,9 +70,5 @@ function App() {
             </div>
           );
         })}
-      </div> */}
-    </>
-  );
+      </div> */
 }
-
-export default App;
