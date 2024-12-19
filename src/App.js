@@ -4,6 +4,7 @@ import CoinTable from "./Componenets/CoinTable/CoinTable";
 import Navbar from "./Componenets/Navbar/Navbar";
 import Banner from "./Componenets/Banner/Banner";
 import Home from "./pages/Home";
+import Routing from "./Componenets/Routing/Routing";
 //import { CurrencyContext } from "./Componenets/Context/CurrencyContext";
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
        
       </CurrencyContext.Provider> */}
 
-      <Home />
+      <Routing />
     </>
   );
 }

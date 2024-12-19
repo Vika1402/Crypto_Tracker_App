@@ -4,7 +4,7 @@ function Banner() {
   return (
     <div className="w-full h-[25rem] relative">
       <img
-        className="w-full h-full object-cover opacity-50"
+        className="object-cover w-full h-full opacity-50"
         src="https://img.freepik.com/free-vector/cryptocurrency-bitcoin-golden-coin-with-digital-circuit-lines-background_1017-33592.jpg?t=st=1734546255~exp=1734549855~hmac=482339a11b24db47601e1fcde364f61c76fbdf3b19c54666e73978086844e06b&w=900"
       />
 

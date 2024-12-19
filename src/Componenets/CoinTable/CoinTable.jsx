@@ -6,10 +6,16 @@ import { useQuery } from "@tanstack/react-query";
 //import { CurrencyContext } from "../Context/CurrencyContext";
 import LoadingSpinner from "../Loading/Loading";
 import store from "../state/Store";
+import { useNavigate } from "react-router-dom";
 
 function CoinTable() {
   const { currency } = store();
   const [page, setPage] = useState(1); // Default page set to 1
+  const navigate = useNavigate();
+
+  function handleCoinRedirect(id) {
+    navigate(`/details/${id}`);
+  }
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["coins", page, currency], // Wrap the query key in an object
@@ -44,8 +50,9 @@ function CoinTable() {
           data?.data.map((coin) => {
             return (
               <div
+                onClick={() => handleCoinRedirect(coin.id)}
                 key={coin.id}
-                className="flex items-center justify-start w-full px-2 py-2 font-semibold text-white bg-transparent"
+                className="flex items-center justify-start w-full px-2 py-2 font-semibold text-white bg-transparent cursor-pointer"
               >
                 <div className="flex items-center justify-start gap-3 basis-[35%]">
                   <div className="w-[5rem] h-[5rem] ">
