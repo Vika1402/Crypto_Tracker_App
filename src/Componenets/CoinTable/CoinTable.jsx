@@ -6,17 +6,17 @@ import { useQuery } from "@tanstack/react-query";
 
 function CoinTable() {
   const [page, setPage] = useState(1); // Default page set to 1
- 
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["coins", page], // Wrap the query key in an object
     queryFn: () => fetchCoinData("usd", page), // Function to fetch data
-    retry: 2, // Number of retries on failure
-    retryDelay: 1000, // Delay between retries in milliseconds
-    cacheTime: 1000 * 60 * 2, // Cache duration in milliseconds
+    // retry: 2, // Number of retries on failure
+    // retryDelay: 1000, // Delay between retries in milliseconds
+    cacheTime: 1000 * 60 * 2,
+    staleTime:1000*60*2 // Cache duration in milliseconds
   });
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+
+  // console.log("fetched data : ", data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -27,9 +27,64 @@ function CoinTable() {
   }
 
   return (
-    <div>
-      <button onClick={() => setPage(page + 1)}>next</button>
-      {page}
+    <div className="flex flex-col items-center justify-center gap-5 my-5 w-[80vw] mx-auto">
+      <div className="flex items-center justify-center w-full px-2 py-2 font-semibold text-black bg-yellow-400">
+        <div className="basis-[35%]">coin</div>
+        <div className="basis-[25%]">Current Price</div>
+        <div className="basis-[20%]">24H change</div>
+        <div className="basis-[20%]">market cap</div>
+      </div>
+
+      <div className="flex-col w-[80vw] flex mx-auto">
+        {data &&
+          data?.data.map((coin) => {
+            return (
+              <div
+                key={coin.id}
+                className="flex items-center justify-start w-full px-2 py-2 font-semibold text-white bg-transparent"
+              >
+                <div className="flex items-center justify-start gap-3 basis-[35%]">
+                  <div className="w-[5rem] h-[5rem] ">
+                    <img src={coin.image} className="w-full h-full" alt="" />
+                  </div>
+
+                  <div>
+                    <div className="text-3xl">{coin.name}</div>
+                    <div className="text-xl">{coin.symbol}</div>
+                  </div>
+                </div>
+
+                <div className="basis-[25%]">{coin.current_price}</div>
+                <div className="basis-[20%]">{coin.price_change_24h}</div>
+                <div className="basis-[20%] ml-6"> {coin.market_cap}</div>
+              </div>
+            );
+          })}
+
+        <div className={`flex items-center  ${page>1 && `justify-between` } justify-center w-full`}>
+
+        {page>1 && <button
+            className="text-2xl text-white btn btn-primary btn-wide"
+            onClick={() => {
+              if (page > 1) {
+                setPage(page - 1);
+                return;
+              }
+            }}
+          >
+            Prev
+          </button>
+        
+        }
+          
+          <button
+            className="text-2xl text-white btn btn-secondary btn-wide"
+            onClick={() => setPage(page + 1)}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
