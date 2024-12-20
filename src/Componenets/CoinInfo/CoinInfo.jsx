@@ -1,7 +1,7 @@
 import React from "react";
 import Chart, { CategoryScale } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-function CoinInfo({ historicData, setDays, setInterval, days, currency }) {
+function CoinInfo({ historicData, setDays, setCoinInterval, days, currency }) {
   Chart.register(CategoryScale);
   if (!historicData) {
     alert("No data Availale Here ");
@@ -9,7 +9,7 @@ function CoinInfo({ historicData, setDays, setInterval, days, currency }) {
 
   const chartDays = [
     {
-      label: "24 Hourse",
+      label: "24 Hours",
       value: 1,
     },
     {
@@ -31,7 +31,13 @@ function CoinInfo({ historicData, setDays, setInterval, days, currency }) {
   ];
 
   function handleDayChange(e) {
-    setDays(e.target.options[e.target.selectedIndex].value);
+    const daySelected = e.target.value;
+    if (daySelected == 1) {
+      setCoinInterval(" ");
+    } else {
+      setCoinInterval("daily");
+    }
+    setDays(e.target.value);
   }
   return (
     <div className="flex flex-col items-center justify-center w-full p-6 mt-6 ">
@@ -78,7 +84,7 @@ function CoinInfo({ historicData, setDays, setInterval, days, currency }) {
           >
             {chartDays.map((day, index) => {
               return (
-                <option key={index} value={day.value}>
+                <option selected={days==day.value} key={index} value={day.value}>
                   {day.label}
                 </option>
               );

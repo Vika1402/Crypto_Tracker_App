@@ -14,7 +14,7 @@ export async function FetchCoinHistoricData(
     console.log("Api response data for history details :", response);
     return response;
   } catch (error) {
-    console.log(error);
+    console.log("Rate limit ho gya ");
     throw error;
   }
 }

@@ -10,7 +10,7 @@ export async function fetchCoinData(currency, pageNo) {
     console.log("Api response data :", response);
     return response;
   } catch (error) {
-    console.log(error);
+    console.log("Rate limit excceded");
     throw error;
   }
 }
