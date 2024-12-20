@@ -5,9 +5,9 @@ import { FetchCoinHistoricData } from "../../Services/FetchCoinHistoricData";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../Loading/Loading";
 
-function CoinInfoContainer({coinId }) {
+function CoinInfoContainer({ coinId }) {
   const [days, setDays] = useState(7);
-  const [interval, setCoinInterval] = useState("");
+  const [interval, setCoinInterval] = useState("daily");
   const { currency } = store();
   const {
     isError,
@@ -31,7 +31,13 @@ function CoinInfoContainer({coinId }) {
   }
   return (
     <div>
-      <CoinInfo historicData={historicData} setDays={setDays} setCoinInterval={setCoinInterval} />
+      <CoinInfo
+        historicData={historicData}
+        setDays={setDays}
+        setCoinInterval={setCoinInterval}
+        days={days}
+        currency={currency}
+      />
     </div>
   );
 }
