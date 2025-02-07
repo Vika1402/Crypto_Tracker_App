@@ -1,34 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Chart, { CategoryScale } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+import { chartDays } from "../../Services/Constatt";
 function CoinInfo({ historicData, setDays, setCoinInterval, days, currency }) {
   Chart.register(CategoryScale);
   if (!historicData) {
     alert("No data Availale Here ");
   }
 
-  const chartDays = [
-    {
-      label: "24 Hours",
-      value: 1,
-    },
-    {
-      label: "7 Days",
-      value: 7,
-    },
-    {
-      label: "30 Days",
-      value: 30,
-    },
-    {
-      label: "90 Days",
-      value: 90,
-    },
-    {
-      label: "365 Days",
-      value: 365,
-    },
-  ];
+  useEffect(()=>{
+   console.log(currency); 
+  },[])
 
   function handleDayChange(e) {
     const daySelected = e.target.value;
@@ -52,7 +34,7 @@ function CoinInfo({ historicData, setDays, setCoinInterval, days, currency }) {
                   : `${date.getHours()}:${date.getMinutes()} AM`;
 
               // Return time for 1-day data or date for multi-day data
-              return days === 1 ? time : date.toLocaleDateString();
+              return days == 1 ? time : date.toLocaleDateString();
             }),
             datasets: [
               {
@@ -84,7 +66,11 @@ function CoinInfo({ historicData, setDays, setCoinInterval, days, currency }) {
           >
             {chartDays.map((day, index) => {
               return (
-                <option selected={days==day.value} key={index} value={day.value}>
+                <option
+                  selected={days == day.value}
+                  key={index}
+                  value={day.value}
+                >
                   {day.label}
                 </option>
               );

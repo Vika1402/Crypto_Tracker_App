@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CurrencyContext } from "../Context/CurrencyContext";
 import store from "../state/Store";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Navbar() {
   const { setCurrency } = store();
 
@@ -10,7 +10,7 @@ function Navbar() {
     navigate("/");
   }
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar  w-[100%] py-6 bg-gray fixed top-0 right-0 left-0 z-10 bg-black/60">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -43,9 +43,9 @@ function Navbar() {
         </div>
       </div>
       <div className="navbar-center">
-        <a onClick={gotoHome} className="text-xl btn btn-ghost">
+        <Link onClick={gotoHome} className="text-2xl btn btn-ghost">
           CryptoTracker
-        </a>
+        </Link>
       </div>
       <div className="navbar-end">
         <button className="btn btn-ghost btn-circle">

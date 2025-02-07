@@ -9,7 +9,6 @@ import Routing from "./Componenets/Routing/Routing";
 function App() {
   return (
     <>
-     
       <Routing />
     </>
   );

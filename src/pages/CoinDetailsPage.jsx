@@ -6,22 +6,10 @@ import parse from "html-react-parser";
 import LoadingSpinner from "../Componenets/Loading/Loading";
 import store from "../Componenets/state/Store";
 import CoinInfoContainer from "../Componenets/CoinInfo/CoinInfoContainer";
+import useFetchCoin from "../Componenets/Hooks/useFetchCoin";
 function CoinDetailsPage() {
   const { coinId } = useParams();
-  const { currency } = store();
-  const {
-    isError,
-    error,
-    isLoading,
-    data: coin,
-  } = useQuery({
-    queryKey: ["coins", coinId],
-
-    queryFn: () => FetchCoinDetails(coinId),
-  });
-  useEffect(() => {
-    console.log("Data download", coin);
-  }, [coin]);
+  const [currency, isError, isLoading, coin] = useFetchCoin(coinId);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -29,11 +17,17 @@ function CoinDetailsPage() {
   if (isError) {
     return <div>Error:Something ewent wrong</div>;
   }
+
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="flex flex-col items-start justify-between w-full mt-6 border-r-2 border-gray-500 md:w-1/3 md:mt-0">
-        <img className="mb-5 h-52" src={coin?.data?.image?.large} alt="" />
+      <div className="flex flex-col items-center justify-between w-full mt-6 border-r-2 border-gray-500 md:w-1/3 md:mt-0 ">
+        <img
+          className="mb-5 bg-transparent h-52"
+          src={coin?.data?.image?.large}
+          alt=""
+        />
         <h1 className="mb-5 text-4xl font-bold">{coin?.data.name}</h1>
+        <div className="text-2xl text-white">{coin.data.symbol}</div>
 
         <p className="w-full px-6 py-4 text-justify">
           {parse(coin?.data?.description?.en)}

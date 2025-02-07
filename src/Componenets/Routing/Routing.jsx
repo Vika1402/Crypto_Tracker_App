@@ -6,6 +6,7 @@ import ContentLoader, { Facebook, Code } from "react-content-loader";
 import Layout from "../../pages/Layout";
 import { lazy } from "react";
 import CusomeErrorBoundry from "../ErrorBoundry/CusomeErrorBoundry";
+import Home2 from "../../pages/Home2";
 const Home = lazy(() => import("../../pages/Home"));
 const CoinDetailsPage = lazy(() => import("../../pages/CoinDetailsPage"));
 function Routing() {
@@ -17,13 +18,13 @@ function Routing() {
             index
             element={
               <Suspense fallback={<Facebook />}>
-                <Home />
+                <Home2 />
               </Suspense>
             }
           />
           <Route
             path="/details/:coinId"
-            element=<Suspense fallback={<Code />}>
+            element = <Suspense fallback={<Code />}>
               <CoinDetailsPage />
             </Suspense>
           />
