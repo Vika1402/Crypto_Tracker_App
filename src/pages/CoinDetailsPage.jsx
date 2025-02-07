@@ -19,15 +19,15 @@ function CoinDetailsPage() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row mt-28">
       <div className="flex flex-col items-center justify-between w-full mt-6 border-r-2 border-gray-500 md:w-1/3 md:mt-0 ">
         <img
           className="mb-5 bg-transparent h-52"
           src={coin?.data?.image?.large}
           alt=""
         />
-        <h1 className="mb-5 text-4xl font-bold">{coin?.data.name}</h1>
-        <div className="text-2xl text-white">{coin.data.symbol}</div>
+        <h1 className="mb-5 text-4xl font-bold">{coin?.data?.name}</h1>
+        <div className="text-2xl text-white">{coin.data?.symbol}</div>
 
         <p className="w-full px-6 py-4 text-justify">
           {parse(coin?.data?.description?.en)}
