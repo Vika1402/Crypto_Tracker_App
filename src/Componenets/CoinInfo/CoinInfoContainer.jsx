@@ -15,9 +15,9 @@ function CoinInfoContainer({ coinId }) {
   ] = useFetchCoinHistory(coinId);
 
   console.log("Historical Data", historicData);
-  
+
   if (isLoading) {
-    return <LoadingSpinner />;
+    return < LoadingSpinner />;
   }
   if (isError) {
     return <div className="alert alert-error">Something went wrong</div>;
