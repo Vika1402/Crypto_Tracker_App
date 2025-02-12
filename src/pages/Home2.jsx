@@ -35,9 +35,9 @@ function Home2() {
 
   return (
     <div
-      className="h-screen w-full bg-cover bg-center overflow-y-scroll  mt-24"
+      className="h-screen w-full bg-cover bg-center overflow-y-scroll  bg-no-repeat  mt-24"
       style={{
-        backgroundImage: `url('https://img.freepik.com/free-photo/3d-rendering-bitcoin-sign-purple-background_181624-29618.jpg?t=st=1738933992~exp=1738937592~hmac=acb82fe847219a421c99969e04f2ad5325860502d03f6485e8a619492d2925d7&w=1480')`,
+        backgroundImage: `url('https://img.freepik.com/free-vector/futuristic-vertical-line-rays-fiber-optics-vector_87202-1172.jpg?t=st=1739337031~exp=1739340631~hmac=8263fc11c4e442491ed95a20fc7ba7d532c8a43d207283b643585af8c541acb5&w=1800')`,
       }}
     >
       <div className="flex flex-wrap gap-y-4 gap-x-6 items-center justify-center">
@@ -45,7 +45,7 @@ function Home2() {
           data?.data.map((item, index) => {
             return (
               <div className="flex justify-center items-start ">
-                <div className="card bg-transparent  w-96 shadow-2xl">
+                <div className="card bg-black/50  w-96 shadow-2xl">
                   <figure className="px-10 pt-10">
                     <img
                       onClick={() => handleCoinRedirect(item.id)}
